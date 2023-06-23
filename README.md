@@ -17,11 +17,11 @@ The process involves the following steps:
 
 - **Payment Verification Request**: After the QR Code has been created, the BoltPay Client SDK sends a request to the Sui Network. This request is to check the payment status for the specific transaction associated with the QR Code. The Boltpay Client SDK uses a listen function to wait for a response from the Sui Network.
 
-6. **Transaction Confirmation**: The Sui Network processes the request from the BoltPay Wallet SDK. Once the payment for the specific transaction has been verified, the Sui Network sends a confirmation back to the BoltPay Client SDK.
+- **Transaction Confirmation**: The Sui Network processes the request from the BoltPay Wallet SDK. Once the payment for the specific transaction has been verified, the Sui Network sends a confirmation back to the BoltPay Client SDK.
 
-7. **Payment Confirmation**: Upon receiving the confirmation from the Sui Network, the BoltPay Client SDK confirms the payment on the Merchant Website. This lets the Merchant Website know that the payment has been successfully processed.
+- **Payment Confirmation**: Upon receiving the confirmation from the Sui Network, the BoltPay Client SDK confirms the payment on the Merchant Website. This lets the Merchant Website know that the payment has been successfully processed.
 
-8. **Order Status Update**: Finally, the Merchant Website updates the order status based on the confirmation received from the BoltPay Client SDK. This could involve changing the order status to "Paid" or "Complete", and triggering any post-payment processes such as order fulfillment.
+- **Order Status Update**: Finally, the Merchant Website updates the order status based on the confirmation received from the BoltPay Client SDK. This could involve changing the order status to "Paid" or "Complete", and triggering any post-payment processes such as order fulfillment.
 
 ## **Prerequisites**
 
