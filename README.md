@@ -76,6 +76,43 @@ return (
 
 In this scenario, a QR code will be created to represent a transaction of transferring 1 unit of cryptocurrency (1 $sui) to the designated address on the testnet network. The address is specified as RECEIVER_ADDRESS.
 
+
+### QR Code Generation for Payment-receiving DeFi Smart Contracts
+
+The `Generator` component generates QR codes for Payment-receiving DeFi Smart Contracts. It receives an object `scanValues` that contains the necessary information for creating a QR code. Here is an example of how to use the component:
+
+```bash
+import { TransactionBlock } from '@mysten/sui.js'
+import { listen, verifyPayment, Generator } from '@blockbolt/boltpay-sui-client'
+const tx = new TransactionBlock();
+
+const defiPaymentsData = {
+SUI_PACKAGE_ID: 'someValue',
+PACKAGE_MODULE_NAME: 'someValue',
+FUNCTION_NAME: 'someValue',
+network: 'someValue',
+arguments: ['argument1', 'argument2', ...],
+blockchain: 'someValue',
+typeArguments: ['someValue'],
+platform_name: 'someValue',
+};
+```
+
+```bash
+<Generator scanValues={defiPaymentsData} />
+```
+The object named "scanValues" must include the following properties:
+
+- **`SUI_PACKAGE_ID`**: Here is the specific identification id for the DeFi package you are currently using.
+- **`PACKAGE_MODULE_NAME`**: This is the name of the specific module within the DeFi package.
+- **`FUNCTION_NAME`**: This is the specific function you are calling within the module.
+- **`network`**: This is the network you are operating on (e.g., mainnet, testnet, etc.).
+- **`arguments`**: This array of arguments will be passed to the function call. The arguments should be filled as per the requirements of the specific function being called.
+- **`blockchain`**: This is the blockchain that you are operating on.
+- **`typeArguments`**: This is an array of type arguments for the function call.
+- **`platform_name`**: This is the name of the platform you are working with.
+
+
 To initiate a transaction seamlessly, scan this QR code using a Sui wallet app that has integrated Blockbolt payment protocol. The app will auto-populate the transaction details and prompt you to confirm the transaction.
 
 ## Listening to Transaction Responses
