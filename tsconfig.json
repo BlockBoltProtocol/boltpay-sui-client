@@ -1,19 +1,19 @@
 {
-  "compilerOptions": {
-    "jsx": "react",
-    "target": "es2017",
-    "module": "commonjs",
-    "removeComments": true,
-    "allowSyntheticDefaultImports": true,
-    "sourceMap": false,
-    "incremental": true,
-    "strict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "declaration": true,
-    "baseUrl": "./",
-    "outDir": "./dist",
-    "resolveJsonModule": true
-  }
+    "compilerOptions": {
+        "jsx": "react",
+        "target": "es2017",
+        "module": "commonjs",
+        "removeComments": true,
+        "allowSyntheticDefaultImports": true,
+        "sourceMap": false,
+        "incremental": true,
+        "strict": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "declaration": true,
+        "baseUrl": "./",
+        "outDir": "./dist",
+        "resolveJsonModule": true
+    }
 }

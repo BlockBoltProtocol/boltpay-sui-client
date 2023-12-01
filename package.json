@@ -1,13 +1,12 @@
 {
-  "name": "@blockbolt/boltpay-sui-client",
+  "name": "@blockbolt/boltpay-client",
   "version": "1.0.0",
-  "description": "BoltPay SDK for Sui Client",
+  "description": "BoltPay SDK for E-Commerce",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "modules": "dist/index.mjs",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rmdir /s /q dist && tsc",
+    "build": "rm -rf dist && tsc",
     "lint": "tsc"
   },
   "repository": {
@@ -25,6 +24,9 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/BlockBoltProtocol/boltpay-sui-client/issues"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "homepage": "https://github.com/BlockBoltProtocol/boltpay-sui-client#readme",
   "devDependencies": {
