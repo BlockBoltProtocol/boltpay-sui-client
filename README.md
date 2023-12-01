@@ -1,6 +1,7 @@
 # Boltpay Client SDK for Sui Network
 
 ## **What is BlockBolt Protocol**
+
 BlockBolt is a decentralized payment protocol on the multichain. It offers seamless, secure, and efficient transactions for businesses and consumers, encouraging cryptocurrency adoption. BlockBolt provides an open-source SDK, plug-and-play services, and resources for developers to create or integrate payment solutions.
 
 The Boltpay Client SDK is a highly beneficial tool that effortlessly integrates into merchant websites. With this tool, merchants can generate QR codes and authenticate payments on the Sui chain. By utilizing a hash verification technique, payments are only approved once they have been successfully processed on the blockchain. This feature enables merchants to conveniently verify payments on the checkout page. Moreover, the Boltpay SDK for Clients handles transactions on the Sui chain, guaranteeing safe and secure delivery of payments to the merchant's wallet.
@@ -25,25 +26,26 @@ The process involves the following steps:
 
 ## **Prerequisites**
 
-Before you start, it is important to keep in mind the following guidelines: 
+Before you start, it is important to keep in mind the following guidelines:
 
 - Do not refresh the checkout page: Please take note that it is crucial not to refresh the page at any given time while proceeding with the checkout process.
 
-In addition, you should have prior knowledge of the following programming languages and frameworks: 
+In addition, you should have prior knowledge of the following programming languages and frameworks:
 
-- React.js: A framework utilized for building user interfaces. 
-- Next.js: It supports features like server-side rendering and static websites for React applications. 
-- Vite: A build tool for modern web projects. 
-- TypeScript: A statically typed superset of JavaScript that improves its scalability. 
-- JavaScript: The primary language for web development. 
+- React.js: A framework utilized for building user interfaces.
+- Next.js: It supports features like server-side rendering and static websites for React applications.
+- Vite: A build tool for modern web projects.
+- TypeScript: A statically typed superset of JavaScript that improves its scalability.
+- JavaScript: The primary language for web development.
 
 Having a basic understanding of these languages and frameworks will enable you to maximize the potential of the Sui Wallet SDK. Keep in mind that all operations are performed client-side.
 
 ## **Installation**
+
 To install the Boltpay Client SDK, simply use npm and follow the straightforward process.
 
 ```bash
-npm i @blockbolt/boltpay-sui-client
+npm i @blockbolt/boltpay-client
 ```
 
 ## Generate a QR code
@@ -61,57 +63,21 @@ Below is a thorough explanation of the `values` prop.
 Here's an example of how you can do this:
 
 ```bash
-import Generator from '@blockbolt/boltpay-sui-client'
+import Generator from '@blockbolt/boltpay-client'
 
-const generators = {
+const merchantProps = {
     merchantAmount: number // merchant transfer amount (ex. 1)
-	  merchantAddress: string // merchant or receiver addrees
-	  merchantNetwork: string // merchant selected network (ex. testnet)
+	merchantAddress: string // merchant or receiver addrees
+    merchantName: string // merchant name
+	merchantNetwork: string // merchant selected network (ex. testnet)
 }
 
 return (
-	<Geneartor values={generators} />
+	<Geneartor generators={merchantProps} />
 )
 ```
 
 In this scenario, a QR code will be created to represent a transaction of transferring 1 unit of cryptocurrency (1 $sui) to the designated address on the testnet network. The address is specified as RECEIVER_ADDRESS.
-
-
-### QR Code Generation for Payment-receiving DeFi Smart Contracts
-
-The `Generator` component generates QR codes for Payment-receiving DeFi Smart Contracts. It receives an object `scanValues` that contains the necessary information for creating a QR code. Here is an example of how to use the component:
-
-```bash
-import { TransactionBlock } from '@mysten/sui.js'
-import { listen, verifyPayment, Generator } from '@blockbolt/boltpay-sui-client'
-const tx = new TransactionBlock();
-
-const defiPaymentsData = {
-SUI_PACKAGE_ID: 'someValue',
-PACKAGE_MODULE_NAME: 'someValue',
-FUNCTION_NAME: 'someValue',
-network: 'someValue',
-arguments: ['argument1', 'argument2', ...],
-blockchain: 'someValue',
-typeArguments: ['someValue'],
-platform_name: 'someValue',
-};
-```
-
-```bash
-<Generator scanValues={defiPaymentsData} />
-```
-The object named "scanValues" must include the following properties:
-
-- **`SUI_PACKAGE_ID`**: Here is the specific identification id for the DeFi package you are currently using.
-- **`PACKAGE_MODULE_NAME`**: This is the name of the specific module within the DeFi package.
-- **`FUNCTION_NAME`**: This is the specific function you are calling within the module.
-- **`network`**: This is the network you are operating on (e.g., mainnet, testnet, etc.).
-- **`arguments`**: This array of arguments will be passed to the function call. The arguments should be filled as per the requirements of the specific function being called.
-- **`blockchain`**: This is the blockchain that you are operating on.
-- **`typeArguments`**: This is an array of type arguments for the function call.
-- **`platform_name`**: This is the name of the platform you are working with.
-
 
 To initiate a transaction seamlessly, scan this QR code using a Sui wallet app that has integrated Blockbolt payment protocol. The app will auto-populate the transaction details and prompt you to confirm the transaction.
 
@@ -128,14 +94,14 @@ To provide more insight, let's examine the **`details`** object:
 Here's an example of how you can use the `listen` function:
 
 ```bash
-import { listen } from '@blockbolt/boltpay-sui-client'
+import { listen } from '@blockbolt/boltpay-client'
 
-const listens = {
+const listen = {
     network: string // Options: mainnet, testnet, devnet
 }
 
 const onListen = async () => {
-    const listen_response = await listen(details)
+    const listen_response = await listen(listen)
     console.log(listen_response)
 }
 
@@ -160,15 +126,15 @@ To verify a payment, the function **`verifyPayment`** requires an object contain
 Here's an example of how you can use the **`verifyPayment`** function:
 
 ```bash
-import { verifyPayment } from '@blockbolt/boltpay-sui-client'
+import { verifyPayment } from '@blockbolt/boltpay-client'
 
 const verifyPayments = {
     network: string // Options: mainnet, testnet, devnet
     digest: string // transaction digest
-  }
+}
 
 const onCheckTxn = async () => {
-    const verify_response = await verifyPayment(digestData)
+    const verify_response = await verifyPayment(verifyPayments)
     console.log(verify_response)
 }
 ```
@@ -187,7 +153,6 @@ Our Delay Order Solution addresses the issue of payments made by customers not b
 - 106 = The shared transaction id is not correct
 - 107 = The shared merchant address is not correct
 
-
 **Disclaimer: Please note that the BlockBolt protocol relies solely on blockchain verification for payment confirmation and process.**
 
-**Do you encounter any issues or require assistance? Kindly send us an email at support@blockbolt.io or submit a support ticket on our Discord server https://discord.gg/Fb8CA6ny67. We are ready to help you out.**
+**Do you encounter any issues or require assistance? Kindly send us an email at support@blockbolt.io or submit a support ticket on our [Discord server](https://discord.gg/Fb8CA6ny67). We are ready to help you out.**
