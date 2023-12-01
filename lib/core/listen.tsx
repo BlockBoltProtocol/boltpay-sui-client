@@ -11,6 +11,8 @@ import {
   STATUS_101,
   STATUS_102,
   STATUS_105,
+  getNetworkUrl,
+  getPackageID,
 } from "../utils/index";
 
 interface Listens {
@@ -24,20 +26,8 @@ export const listen = async (listens: Listens) => {
 
   const onLastTransaction = async (randomKey: number) => {
     const getNetwork = listens.network.toLowerCase();
-
-    let networkUrl =
-      getNetwork == "testnet"
-        ? RPC_TESTNET
-        : getNetwork == "devnet"
-        ? RPC_DEVNET
-        : RPC_MAINNET;
-
-    let packageId =
-      getNetwork == "testnet"
-        ? PACKAGE_TESTNET
-        : getNetwork == "devnet"
-        ? PACKAGE_DEVNET
-        : PACKAGE_MAINNET;
+    const networkUrl = getNetworkUrl(getNetwork);
+    const packageId = getPackageID(getNetwork);
 
     const data = {
       method: "suix_queryTransactionBlocks",
@@ -84,7 +74,7 @@ export const listen = async (listens: Listens) => {
             responses.push(STATUS_102);
           }
         } else {
-          if (checkData == 1 && attempts <= 20) {
+          if (checkData == 1 && attempts <= 100) {
             attempts += 1;
             const ts = await onLastTransaction(randomKey);
             if (ts !== undefined) {
